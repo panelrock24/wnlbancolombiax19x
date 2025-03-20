@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bancolombia</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/404.css">
+</head>
+<body>
+    <!-- Fondo bloqueado -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Ventana modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <img src="img/logo.png" alt="Fallas Técnicas" class="modal-image">
+            <p class="modal-text">
+                <strong>Error 404</strong>
+            </p>
+            <p class="modal-footer">
+                En este momento la pagina esta caída y nuestra compañía se encuentra trabajando, vuelve a hablar con tu representante o intenta de nuevo mas tarde. <strong>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Bloquear el fondo y mostrar la ventana modal
+        document.addEventListener("DOMContentLoaded", function () {
+            const overlay = document.getElementById("overlay");
+            const modal = document.getElementById("modal");
+
+            // Muestra la ventana modal
+            overlay.style.display = "block";
+            modal.style.display = "block";
+        });
+    </script>
+    <script type="module" src="js/util.js"></script>
+</body>
+</html>

